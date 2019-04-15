@@ -1,0 +1,102 @@
+FileUploadByAutoIT
+
+@Test
+	public void uploadFile() throws IOException, InterruptedException {
+		driver.get("https://timeandtraining.net/seleniumdemo/selenium.html");
+		driver.findElement(By.id("demoFileUpload")).click();
+		Runtime.getRuntime().exec("F:\\Time And Training\\Demo Folder\\sel-nov-dec-18\\fileuploadDemo.exe");
+
+		Thread.sleep(5000);
+		
+	}
+  
+  mouseOverByActions
+  @Test
+	public void mouseOverByActions() {
+	System.setProperty("webdriver.chrome.driver", "lib\\chromedriver-windows-32bit.exe");
+	WebDriver driver = new ChromeDriver();
+	
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	driver.manage().window().maximize();
+	driver.get("https://timeandtraining.net/seleniumdemo/selenium.html");
+		
+	Actions actions = new Actions(driver);
+	WebElement red_button=driver.findElement(By.xpath("//li[contains(@class,'bg-danger')]"));
+	actions.moveToElement(red_button).build().perform();
+	
+	String msg=driver.findElement(By.id("mouseovertext")).getText();
+	Assert.assertEquals(msg, "Red means danger");
+	
+	WebElement green_button=driver.findElement(By.xpath("//li[contains(@class,'bg-success')]"));
+	actions.moveToElement(green_button).build().perform();
+	msg=driver.findElement(By.id("mouseovertext")).getText();
+	Assert.assertEquals(msg, "Green for Go..");
+	
+	WebElement blue_button=driver.findElement(By.xpath("//li[contains(@class,'bg-primary')]"));
+	actions.moveToElement(blue_button).build().perform();
+	msg=driver.findElement(By.id("mouseovertext")).getText();
+	Assert.assertEquals(msg, "Sky is Blue");
+	
+	driver.close();
+		
+	}
+  
+  
+  DriverSwitchDemo
+  @Test
+	public void switchToWindowDemo() {
+		
+		driver.getWindowHandles();
+		driver.get("http://automationpractice.com/index.php");
+		driver.switchTo().window(nameOrHandle)
+		
+		System.out.println("manually open new window");
+		
+		driver.findElement(By.xpath("//a[text()='Gmail']")).click();
+		
+		
+	}
+	*/
+	
+	@Test
+	public void switchToFrameDemo() {
+		driver.get("https://html.com/tags/iframe/");
+		
+  	driver.switchTo().frame(3);
+		driver.switchTo().frame("aswift_2");
+		driver.switchTo().frame("google_ads_frame3");
+		
+		driver.findElement(By.xpath("//a[@id='ala3']")).click();
+
+	}
+	
+	@Test
+	public void demoAlertPopup() {
+		
+		driver.get("https://timeandtraining.net/seleniumdemo/selenium.html");
+		driver.findElement(By.xpath("//button[text()='click to see the date and time']")).click();
+		driver.switchTo().alert().accept();
+		driver.close();
+		
+	}
+	
+	dropDown
+  
+  @Test
+	public void selectLanguage() {
+		System.setProperty("webdriver.chrome.driver", "lib\\chromedriver-windows-32bit.exe");
+		ChromeDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get("https://timeandtraining.net/seleniumdemo/selenium.html");
+		WebElement e =driver.findElement(By.xpath("(//select)[1]"));
+		Select languageDropDown = new Select(e);
+		
+		languageDropDown.selectByVisibleText("PHP");
+		
+	
+		
+	}
+	
+	
+
+}
